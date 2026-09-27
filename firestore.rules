@@ -1,0 +1,137 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /*
+     * ============================================================
+     * SparkEdu Firestore Security
+     * Phase 3 - UID-based protection
+     * ============================================================
+     */
+
+    /*
+     * ------------------------------------------------------------
+     * SECURITY PROFILES
+     * ------------------------------------------------------------
+     *
+     * Created by the Admin SDK migration script.
+     * Mobile users cannot modify these documents.
+     */
+    match /security_profiles/{userId} {
+      allow read: if request.auth != null
+                   && request.auth.uid == userId;
+
+      allow write: if false;
+    }
+
+
+    /*
+     * ------------------------------------------------------------
+     * USERS
+     * ------------------------------------------------------------
+     *
+     * Temporary authenticated access while the remaining
+     * SparkEdu collections are migrated to role-specific rules.
+     */
+    match /users/{userId} {
+      allow read, write: if request.auth != null;
+
+      /*
+       * ----------------------------------------------------------
+       * SPARKAI CHAT HISTORY
+       * ----------------------------------------------------------
+       *
+       * Only the authenticated owner can access their own
+       * SparkAI conversations.
+       */
+      match /spark_ai_chats/{chatId} {
+        allow read, write: if request.auth != null
+                           && request.auth.uid == userId;
+
+        match /messages/{messageId} {
+          allow read, write: if request.auth != null
+                             && request.auth.uid == userId;
+        }
+      }
+
+      /*
+       * Other user subcollections remain temporarily accessible
+       * to authenticated users.
+       */
+      match /{subcollection}/{documentId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+
+
+    /*
+     * ------------------------------------------------------------
+     * OTHER SPARKEDU COLLECTIONS
+     * ------------------------------------------------------------
+     *
+     * Temporary authenticated access.
+     * These will be secured individually in later phases.
+     */
+
+    match /announcements/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /anonymous_doubt_messages/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /anonymous_doubts/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /assignments/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /attendance/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /attendance_sessions/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /chats/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /classes/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /direct_chats/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /event_requests/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /leave_requests/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /spark_ai_doubt_alerts/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /spark_ai_doubts/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /subjects/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /teachers/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

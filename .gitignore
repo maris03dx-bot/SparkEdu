@@ -1,0 +1,76 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Firebase / signing secrets
+google-services.json
+key.properties
+*.jks
+*.keystore
+
+# Environment / API secrets
+.env
+.env.*
+
+# Private data files
+functions/*.xlsx
+
+# Generated Android reports
+android/build/reports/
+
+# Generated files inside local third-party Flutter packages
+third_party/**/.dart_tool/
+third_party/**/build/
+third_party/**/.gradle/
+third_party/**/local.properties
+third_party/**/android/.cxx/
+third_party/**/example/**/.dart_tool/
+third_party/**/example/**/build/
+third_party/**/example/**/.gradle/
+third_party/**/example/**/local.properties
+third_party/**/example/**/ios/Flutter/ephemeral/
+third_party/**/example/**/macos/Flutter/ephemeral/
+third_party/**/example/**/windows/flutter/ephemeral/
+third_party/**/example/**/winuwp/**/Windows_TemporaryKey.pfx

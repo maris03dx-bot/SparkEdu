@@ -1,0 +1,79 @@
+name: sparkedu
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  flutter_gemini: ^3.0.0
+
+  # Firebase
+  firebase_core: ^4.12.1
+  firebase_auth: ^6.5.6
+  cloud_firestore: ^6.9.0
+  firebase_storage: ^13.4.6
+
+  # Markdown
+  flutter_markdown: ^0.7.3
+
+  # File Picker
+  file_picker: 12.3.0
+
+  # OCR
+  google_mlkit_text_recognition: ^0.17.1
+
+  # PDF
+  syncfusion_flutter_pdf: ^30.2.7
+
+  # ZIP
+  archive: ^4.0.7
+
+  # Utilities
+  intl: ^0.20.3
+  uuid: ^4.5.1
+
+  # Images
+  image_picker: ^1.1.2
+
+  # QR Code
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^7.4.1
+
+  http: ^1.5.0
+  livekit_client: ^2.11.0
+
+  speech_to_text:
+    path: third_party/speech_to_text
+  flutter_tts:
+    path: third_party/flutter_tts
+  url_launcher: ^6.3.2
+  device_info_plus: 13.2.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/images/app_logo.png
+  adaptive_icon_background: "#0B1F4D"
+  adaptive_icon_foreground: assets/images/app_logo.png
