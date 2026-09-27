@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 
+import 'config/local_config.dart';
 import 'firebase_options.dart';
 import 'services/spark_ai_service.dart';
 import 'screens/splash/splash_screen.dart';
@@ -10,29 +11,27 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // ============================================================
-  // GEMINI API KEY
+  // GEMINI AI
   // ============================================================
-  // Put your NEW Gemini API key here.
   //
-  // Example:
-  // Gemini.init(
-  //   apiKey: "AIzaSy................",
-  // );
+  // The API key is stored locally in:
+  // lib/config/local_config.dart
   //
-  // IMPORTANT:
-  // Do NOT put the key inside SparkAIService.
+  // That file is ignored by Git and will NOT be pushed to GitHub.
   // ============================================================
 
-  const String geminiApiKey = "YOUR_KEY_HERE";
+  if (geminiApiKey.trim().isEmpty ||
+      geminiApiKey == 'YOUR_NEW_GEMINI_API_KEY') {
+    debugPrint('WARNING: Gemini API key is not configured.');
+  } else {
+    Gemini.init(
+      apiKey: geminiApiKey,
+    );
 
-  Gemini.init(
-    apiKey: geminiApiKey,
-  );
-
-  // Give the same key to our SparkAI HTTP service.
-  SparkAIService.initialize(
-    apiKey: geminiApiKey,
-  );
+    SparkAIService.initialize(
+      apiKey: geminiApiKey,
+    );
+  }
 
   // ============================================================
   // FIREBASE
@@ -56,15 +55,11 @@ class SparkEduApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       title: 'SparkEdu',
-
       theme: ThemeData(
         primarySwatch: Colors.blue,
-
         useMaterial3: true,
       ),
-
       home: const SplashScreen(),
     );
   }

@@ -74,3 +74,7 @@ third_party/**/example/**/ios/Flutter/ephemeral/
 third_party/**/example/**/macos/Flutter/ephemeral/
 third_party/**/example/**/windows/flutter/ephemeral/
 third_party/**/example/**/winuwp/**/Windows_TemporaryKey.pfx
+
+
+# Local SparkAI configuration
+lib/config/local_config.dart
